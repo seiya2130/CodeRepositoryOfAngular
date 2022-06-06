@@ -1,0 +1,12 @@
+<div>
+  <p>子コンポーネントに渡す値</p>
+  <input type="text" [(ngModel)]="inputText">
+</div>
+<div>
+  <p>子コンポーネントから渡された値</p>
+  <input type="text" [(ngModel)]="outputText">
+</div>
+<div>
+  <app-child [inputText]="inputText" (output)="getOutput($event)"></app-child>
+</div>
+
