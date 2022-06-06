@@ -1,0 +1,8 @@
+<div>
+  <p>親コンポーネントから渡された値：{{ inputText }}</p>
+</div>
+<div>
+  <p>親コンポーネントに渡す値</p>
+  <input type="text" [(ngModel)]="outputText">
+  <button (click)="submit()">Submit</button>
+</div>
