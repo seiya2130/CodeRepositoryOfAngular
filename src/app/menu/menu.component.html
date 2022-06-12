@@ -1,0 +1,8 @@
+<div *ngIf="menu.name != undefined && menu.name != null">
+  <p>{{ menu.name }}</p>
+  <input type="text" [(ngModel)]="menu.name">
+  <button (click)="submit(menu)">submit</button>
+</div>
+<div *ngIf="menu.menu != undefined && menu.menu != null">
+  <app-menu [menu]="menu.menu" (menuEvent)="send($event)"></app-menu>
+</div>
