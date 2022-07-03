@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { of, Observable, Observer, filter, map, interval } from 'rxjs';
+import { of, Observable, Observer, filter, map, interval, from } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -21,13 +21,16 @@ export class AppComponent {
 
 // observable.subscribe(observer);
 
-of(1, 2, 3, 4, 5)
-  .pipe(
-    filter(x => x % 2 == 0),
-    map(x => x * x))
-  .subscribe((x) => console.log(x));
+const observable = new Observable(function subscribe(subscriber) {
+  subscriber.next(1)
+  subscriber.next(2)
+  setInterval(() => {
+    subscriber.next('Hello World');
+  }, 1000);
+});
 
-const observable = interval(1000);
-observable.subscribe(x => console.log(x));
+const a = observable.subscribe(x => console.log(x));
+a.unsubscribe()
+
 
 
