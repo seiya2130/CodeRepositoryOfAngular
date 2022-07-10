@@ -11,7 +11,17 @@ export class AppComponent {
 
 }
 
-// const observable = of(1, 2, 3);
+const observable1 = interval(1000);
+const observable2 = interval(2000);
+
+let subscription1 = observable1.subscribe(x => console.log(`sub1:${x}`));
+let subscription2 = observable2.subscribe(x => console.log(`sub2:${x}`));
+
+subscription1.add(subscription2);
+
+setInterval(() => {
+  subscription1.unsubscribe()},
+  3000);
 
 // const observer: Observer<number> = {
 //   next: (value) => console.log(`next:${value}`),
@@ -19,18 +29,21 @@ export class AppComponent {
 //   complete: () => console.log("complete"),
 // }
 
-// observable.subscribe(observer);
+// const observer = {
+// 	next: (value: number) => console.log(`next:${value}`),
+// 	complete: () => console.log("complete"),
+// };
 
-const observable = new Observable(function subscribe(subscriber) {
-  subscriber.next(1)
-  subscriber.next(2)
-  setInterval(() => {
-    subscriber.next('Hello World');
-  }, 1000);
-});
+//observable.subscribe(x => console.log(x));
 
-const a = observable.subscribe(x => console.log(x));
-a.unsubscribe()
+// const observable = new Observable(function subscribe(subscriber) {
+//   subscriber.next(1)
+//   subscriber.next(2)
+//   subscriber.complete();
+// });
+
+// observable.subscribe(x => console.log(x));
+
 
 
 
