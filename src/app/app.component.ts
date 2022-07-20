@@ -22,3 +22,19 @@ export class AppComponent implements OnInit{
     this.appService.changeName(name);
   }
 }
+
+import { BehaviorSubject } from 'rxjs';
+const subject = new BehaviorSubject(0);
+
+subject.subscribe({
+  next: (v) => console.log(`observer1: ${v}`),
+});
+
+subject.next(1);
+subject.next(2);
+
+subject.subscribe({
+  next: (v) => console.log(`observer2: ${v}`),
+});
+
+subject.next(3);
